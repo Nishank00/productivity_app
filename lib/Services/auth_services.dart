@@ -39,7 +39,11 @@ class AuthServices {
 
   //Forgot password
   Future restPassword(String email) async {
-    await _auth.sendPasswordResetEmail(email: email);
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      print("resetPassword: $e");
+    }
   }
 
   //Sign Out
