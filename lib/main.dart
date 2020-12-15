@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:productivity_app/Screens/onboaring_page.dart';
 import 'package:productivity_app/Screens/splash_page.dart';
 
 void main() {
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Productivity App',
       debugShowCheckedModeBanner: false,
-      home: SplashPage(),
+      home: OnBoardingPage(),
     );
   }
 }
