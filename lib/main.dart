@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:productivity_app/Screens/login_page.dart';
 import 'package:productivity_app/Screens/onboaring_page.dart';
 import 'package:productivity_app/Screens/splash_page.dart';
 
@@ -12,7 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Productivity App',
       debugShowCheckedModeBanner: false,
-      home: OnBoardingPage(),
+      theme: ThemeData(
+        fontFamily: "ProductSans"
+      ),
+      home: LoginPage(),
     );
   }
 }
