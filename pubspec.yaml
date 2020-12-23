@@ -36,6 +36,7 @@ dependencies:
   #provider: ^4.3.2+3
   google_sign_in: ^4.5.6
   introduction_screen: ^1.0.7
+  table_calendar: ^2.3.3
 
 dev_dependencies:
   flutter_test:
@@ -57,7 +58,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
+    - assets/images/organize.png
+    - assets/images/relax.png
+    - assets/images/workout.png
   
   #   - images/a_dot_ham.jpeg
 
@@ -72,6 +75,9 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+    - family: ProductSans
+      fonts:
+        - asset: fonts/ProductSans-Regular.ttf
   
   

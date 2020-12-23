@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:productivity_app/Screens/forgot_password.dart';
-import 'package:productivity_app/Screens/signup_page.dart';
 
-class LoginPage extends StatefulWidget {
+class SignupPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignupPageState createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,14 +24,14 @@ class _LoginPageState extends State<LoginPage> {
                     height: 50,
                   ),
                   Text(
-                    "Welcome,",
+                    "Create Account,",
                     style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 6,
                   ),
                   Text(
-                    "Sign in to continue!",
+                    "Sign up to get started!",
                     style: TextStyle(fontSize: 20, color: Colors.grey.shade400),
                   ),
                 ],
@@ -42,20 +40,20 @@ class _LoginPageState extends State<LoginPage> {
                 children: <Widget>[
                   TextField(
                     decoration: InputDecoration(
-                      labelText: "Email ID",
-                      labelStyle:
-                          TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                      labelText: "Full Name",
+                      labelStyle: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey.shade400,
+                          fontWeight: FontWeight.w600),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade300,
-                        ),
+                        borderSide: BorderSide(color: Colors.grey.shade300),
                       ),
                       focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.red,
-                          )),
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: Colors.red),
+                      ),
+                      floatingLabelBehavior: FloatingLabelBehavior.auto,
                     ),
                   ),
                   SizedBox(
@@ -63,41 +61,42 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextField(
                     decoration: InputDecoration(
-                      labelText: "Password",
-                      labelStyle:
-                          TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                      labelText: "Email ID",
+                      labelStyle: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey.shade400,
+                          fontWeight: FontWeight.w600),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade300,
-                        ),
+                        borderSide: BorderSide(color: Colors.grey.shade300),
                       ),
                       focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.red,
-                          )),
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: Colors.red),
+                      ),
+                      floatingLabelBehavior: FloatingLabelBehavior.auto,
                     ),
                   ),
                   SizedBox(
-                    height: 12,
+                    height: 16,
                   ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: FlatButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ForgotPassword(),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        "Forgot Password ?",
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w600),
+                  TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: "Password",
+                      labelStyle: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey.shade400,
+                          fontWeight: FontWeight.w600),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: Colors.grey.shade300),
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(color: Colors.red),
+                      ),
+                      floatingLabelBehavior: FloatingLabelBehavior.auto,
                     ),
                   ),
                   SizedBox(
@@ -105,15 +104,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Container(
                     height: 50,
-                    width: double.infinity,
                     child: FlatButton(
-                      onPressed: () {
-                        //Todo Login Method Here
-                      },
+                      onPressed: () {},
                       padding: EdgeInsets.all(0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
                       child: Ink(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
                           gradient: LinearGradient(
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
@@ -123,22 +121,20 @@ class _LoginPageState extends State<LoginPage> {
                               Color(0xffffc371),
                             ],
                           ),
+                          borderRadius: BorderRadius.circular(6),
                         ),
                         child: Container(
                           alignment: Alignment.center,
                           constraints: BoxConstraints(
-                              maxWidth: double.infinity, minHeight: 50),
+                              minHeight: 50, maxWidth: double.infinity),
                           child: Text(
-                            "Login",
+                            "Sign up",
                             style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
                         ),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
                       ),
                     ),
                   ),
@@ -149,26 +145,27 @@ class _LoginPageState extends State<LoginPage> {
                     height: 50,
                     width: double.infinity,
                     child: FlatButton(
-                      onPressed: () {
-                        //TODO Google Method here
-                      },
+                      onPressed: () {},
                       color: Colors.indigo.shade50,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
-                      ),
+                          borderRadius: BorderRadius.circular(6)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          //Todo Google PNG Image here
+                          Image.asset(
+                            "images/facebook.png",
+                            height: 18,
+                            width: 18,
+                          ),
                           SizedBox(
                             width: 10,
                           ),
                           Text(
-                            "Contiue with Google",
+                            "Connect with Facebook",
                             style: TextStyle(
-                                color: Colors.indigo,
-                                fontWeight: FontWeight.bold),
-                          ),
+                                fontWeight: FontWeight.bold,
+                                color: Colors.indigo),
+                          )
                         ],
                       ),
                     ),
@@ -179,23 +176,20 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.only(bottom: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "I'm a new user.",
+                      "I'm already a member.",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return SignupPage();
-                        }));
+                        Navigator.pop(context);
                       },
                       child: Text(
-                        "Sign up",
+                        "Sign in.",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.red),
                       ),

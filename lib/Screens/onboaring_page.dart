@@ -9,26 +9,23 @@ class OnBoardingPage extends StatefulWidget {
 }
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
-
-  
   List<PageViewModel> listPages = [
     PageViewModel(
       body: ' "A good system shortens the road to the goal." ',
       title: "Organize",
-      
       image: Padding(
           padding: EdgeInsets.only(top: 30.0),
           child: Image.asset("assets/images/organize.png")),
     ),
     PageViewModel(
       title: "Workout",
-      body: "All you need is the plan, the road map, and the courage to press on to your destination.",
+      body:
+          ' "All you need is the plan, the road map, and the courage to press on to your destination." ',
       image: Image.asset("assets/images/workout.png"),
     ),
     PageViewModel(
       title: "Relax",
-      body:
-          "Sometimes the most productive thing you can do is relax",
+      body: ' "Sometimes the most productive thing you can do is relax" ',
       image: Image.asset("assets/images/relax.png"),
     )
   ];
@@ -42,7 +39,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           done: Text("Done"),
           skip: Text("Skip"),
           onDone: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
           },
           showNextButton: true,
           showSkipButton: true,
