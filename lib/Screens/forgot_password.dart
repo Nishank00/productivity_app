@@ -41,38 +41,46 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             ],
           ),
           SizedBox(
-            height: 20,
-          ),
-          Text(
-            "Please enter your Email-ID, we will send you reset link shortly",
-            style: TextStyle(
-              fontSize: 16.0,
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          TextField(
-            decoration: InputDecoration(
-              labelText: "Email ID",
-              labelStyle: TextStyle(fontSize: 14, color: Colors.grey.shade400),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
-                  color: Colors.grey.shade300,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                    color: Colors.red,
-                  )),
-            ),
-          ),
-          SizedBox(
-            height: 20.0,
+            height: 30,
           ),
           Container(
+            margin: EdgeInsets.only(left: 10, right: 10),
+            child: Text(
+              "Please enter your Email-ID, we will send you reset link shortly",
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 70,
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 10, right: 10),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: "Email ID",
+                labelStyle:
+                    TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade300,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Colors.red,
+                    )),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 50.0,
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 10, right: 10),
             height: 50,
             width: double.infinity,
             child: FlatButton(
@@ -98,7 +106,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   constraints:
                       BoxConstraints(maxWidth: double.infinity, minHeight: 50),
                   child: Text(
-                    "Login",
+                    "Send mail",
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:productivity_app/Helper/helper_functions.dart';
-import 'package:productivity_app/Screens/forgot_password.dart';
 import 'package:productivity_app/Screens/home_page.dart';
-import 'package:productivity_app/Screens/login_page.dart';
 import 'package:productivity_app/Screens/onboaring_page.dart';
-import 'package:productivity_app/Screens/splash_page.dart';
-import 'package:productivity_app/Screens/todo.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,13 +13,21 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool showOnBoarding = true;
+  bool showOnBoarding;
 
   @override
   void initState() {
     setState(() {
       HelperFunctions.getOnBoardingSharedPreference().then((value) {
-        showOnBoarding = value;
+        if (value != null) {
+          setState(() {
+            showOnBoarding = value;
+          });
+        } else {
+          setState(() {
+            showOnBoarding = true;
+          });
+        }
       });
     });
     super.initState();
@@ -36,8 +39,9 @@ class _MyAppState extends State<MyApp> {
       title: 'Productivity App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "ProductSans"),
-      //home: showOnBoarding ? OnBoardingPage() : HomePage(),
-      home: ForgotPassword(),
+      home: showOnBoarding ? OnBoardingPage() : HomePage(),
+      //home:
+      //home: ForgotPassword(),
     );
   }
 }

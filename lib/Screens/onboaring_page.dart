@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:productivity_app/Helper/helper_functions.dart';
 import 'package:productivity_app/Screens/home_page.dart';
 
 class OnBoardingPage extends StatefulWidget {
@@ -39,6 +40,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           done: Text("Done"),
           skip: Text("Skip"),
           onDone: () {
+            HelperFunctions.saveOnBoardingSharedPreference(false);
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => HomePage()));
           },
