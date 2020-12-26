@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:productivity_app/Helper/helper_functions.dart';
-import 'package:productivity_app/Screens/home_page.dart';
+//import 'package:productivity_app/Screens/home_page.dart';
+import 'package:productivity_app/Screens/journal_page.dart';
+import 'package:productivity_app/Screens/login_page.dart';
 import 'package:productivity_app/Screens/onboaring_page.dart';
 
 void main() {
@@ -39,9 +41,9 @@ class _MyAppState extends State<MyApp> {
       title: 'Productivity App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "ProductSans"),
-      home: showOnBoarding ? OnBoardingPage() : HomePage(),
+      home: showOnBoarding ? OnBoardingPage() : LoginPage(),
       //home:
-      //home: ForgotPassword(),
+      //home: JournalPage(),
     );
   }
 }

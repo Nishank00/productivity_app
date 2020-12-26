@@ -1,24 +1,33 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:productivity_app/Models/current_user.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:productivity_app/Screens/home_page.dart';
 
 class AuthServices {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  CurrentUser _currentUser = CurrentUser();
 
   setUserDetails(User user) {
     return CurrentUser(currentUserUID: user.uid, emailAddress: user.email);
   }
 
   //SignIn
-  Future signInWithEmailAndPassword(String email, String password) async {
+  Future signInWithEmailAndPassword(
+      BuildContext context, String email, String password) async {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
+
+      if (result == null) {
+        Fluttertoast.showToast(msg: "Oops, something went wrong!");
+      } else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+      }
+
       return setUserDetails(user);
     } catch (e) {
       print("Error signIN: $e");
@@ -26,11 +35,20 @@ class AuthServices {
   }
 
   //Signup
-  Future createUserWithEmailAndPassword(String email, String password) async {
+  Future createUserWithEmailAndPassword(
+      BuildContext context, String email, String password) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
+
+      if (result == null) {
+        Fluttertoast.showToast(msg: "Oops, something went wrong");
+      } else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+      }
+
       return setUserDetails(user);
     } catch (e) {
       print("SignUp: $e");
@@ -56,7 +74,7 @@ class AuthServices {
   }
 
   //Google SignIn
-  Future<User> signInWithGoogle(BuildContext context) async {
+  Future<void> signInWithGoogle(BuildContext context) async {
     final GoogleSignIn _googleSignIn = GoogleSignIn();
 
     final GoogleSignInAccount googleSignInAccount =
@@ -77,6 +95,7 @@ class AuthServices {
 
     if (result == null) {
       print("Oops, Something went wrong!");
+      Fluttertoast.showToast(msg: "Oops, Something went wrong!");
     } else {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => HomePage()));

@@ -166,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                           Text(
                             "Contiue with Google",
                             style: TextStyle(
-                                color: Colors.indigo,
+                                color: Colors.black87,
                                 fontWeight: FontWeight.bold),
                           ),
                         ],

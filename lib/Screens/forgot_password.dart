@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:productivity_app/Services/auth_services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ForgotPassword extends StatefulWidget {
   @override
@@ -6,6 +8,10 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
+  AuthServices _authServices = AuthServices();
+
+  var _emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +64,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           Container(
             margin: EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              controller: _emailController,
               decoration: InputDecoration(
                 labelText: "Email ID",
                 labelStyle:
@@ -85,7 +92,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             width: double.infinity,
             child: FlatButton(
               onPressed: () {
-                //TODO Forgot Password Method
+                _authServices.restPassword(_emailController.text);
+                Fluttertoast.showToast(msg: "Email will be sent shortly");
               },
               padding: EdgeInsets.all(0),
               child: Ink(
