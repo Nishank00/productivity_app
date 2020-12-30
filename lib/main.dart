@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:productivity_app/Helper/helper_functions.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:productivity_app/Screens/home_page.dart';
 //import 'package:productivity_app/Screens/home_page.dart';
 import 'package:productivity_app/Screens/journal_page.dart';
 import 'package:productivity_app/Screens/login_page.dart';
 import 'package:productivity_app/Screens/onboaring_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -16,6 +20,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool showOnBoarding;
+  bool isUserLoggedIn;
 
   @override
   void initState() {
@@ -31,6 +36,20 @@ class _MyAppState extends State<MyApp> {
           });
         }
       });
+
+      HelperFunctions.getUserLoggedInSharedPreference().then((value) {
+        setState(() {
+          if (value != null) {
+            setState(() {
+              isUserLoggedIn = value;
+            });
+          } else {
+            setState(() {
+              isUserLoggedIn = false;
+            });
+          }
+        });
+      });
     });
     super.initState();
   }
@@ -41,9 +60,10 @@ class _MyAppState extends State<MyApp> {
       title: 'Productivity App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "ProductSans"),
-      home: showOnBoarding ? OnBoardingPage() : LoginPage(),
+      home: showOnBoarding ? OnBoardingPage() : isUserLoggedIn ? HomePage() : LoginPage(),
+      //home: LoginPage(),
       //home:
-      //home: JournalPage(),
+      //home: (),
     );
   }
 }

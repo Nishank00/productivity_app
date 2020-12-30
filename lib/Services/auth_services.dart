@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:productivity_app/Helper/helper_functions.dart';
 import 'package:productivity_app/Models/current_user.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:productivity_app/Screens/home_page.dart';
@@ -24,6 +25,8 @@ class AuthServices {
       if (result == null) {
         Fluttertoast.showToast(msg: "Oops, something went wrong!");
       } else {
+        HelperFunctions.saveUserEmailSharedPreference(result.user.email);
+        HelperFunctions.saveUserLoggedInSharedPreference(true);
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomePage()));
       }
@@ -37,6 +40,7 @@ class AuthServices {
   //Signup
   Future createUserWithEmailAndPassword(
       BuildContext context, String email, String password) async {
+    //* Login the user, and set the shared preferences...
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -45,6 +49,8 @@ class AuthServices {
       if (result == null) {
         Fluttertoast.showToast(msg: "Oops, something went wrong");
       } else {
+        HelperFunctions.saveUserEmailSharedPreference(result.user.email);
+        HelperFunctions.saveUserLoggedInSharedPreference(true);
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomePage()));
       }
@@ -65,9 +71,10 @@ class AuthServices {
   }
 
   //Sign Out
-  Future signOut() async {
+  Future<void> signOut() async {
     try {
-      return await _auth.signOut();
+      await _auth.signOut();
+      HelperFunctions.saveUserLoggedInSharedPreference(false);
     } catch (e) {
       print("sign out: $e");
     }
@@ -97,6 +104,9 @@ class AuthServices {
       print("Oops, Something went wrong!");
       Fluttertoast.showToast(msg: "Oops, Something went wrong!");
     } else {
+      HelperFunctions.saveUserLoggedInSharedPreference(true);
+      HelperFunctions.saveUserEmailSharedPreference(result.user.email);
+      print(result.user.email);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => HomePage()));
     }

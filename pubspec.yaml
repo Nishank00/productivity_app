@@ -38,6 +38,7 @@ dependencies:
   introduction_screen: ^1.0.7
   table_calendar: ^2.3.3
   google_nav_bar: ^3.1.0
+  font_awesome_flutter: ^8.11.0
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:productivity_app/Screens/forgot_password.dart';
 import 'package:productivity_app/Screens/signup_page.dart';
+import 'package:productivity_app/Services/auth_services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,6 +10,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  AuthServices _authServices = AuthServices();
+
+  var _emailController = TextEditingController();
+  var _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +48,7 @@ class _LoginPageState extends State<LoginPage> {
               Column(
                 children: <Widget>[
                   TextField(
+                    controller: _emailController,
                     decoration: InputDecoration(
                       labelText: "Email ID",
                       labelStyle:
@@ -62,6 +70,8 @@ class _LoginPageState extends State<LoginPage> {
                     height: 16,
                   ),
                   TextField(
+                    controller: _passwordController,
+                    obscureText: true,
                     decoration: InputDecoration(
                       labelText: "Password",
                       labelStyle:
@@ -108,7 +118,8 @@ class _LoginPageState extends State<LoginPage> {
                     width: double.infinity,
                     child: FlatButton(
                       onPressed: () {
-                        //Todo Login Method Here
+                        _authServices.signInWithEmailAndPassword(context,
+                            _emailController.text, _passwordController.text);
                       },
                       padding: EdgeInsets.all(0),
                       child: Ink(
@@ -150,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                     width: double.infinity,
                     child: FlatButton(
                       onPressed: () {
-                        //TODO Google Method here
+                        _authServices.signInWithGoogle(context);
                       },
                       color: Colors.indigo.shade50,
                       shape: RoundedRectangleBorder(
@@ -159,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          //Todo Google PNG Image here
+                          //TODO Put Google Logo Here...
                           SizedBox(
                             width: 10,
                           ),

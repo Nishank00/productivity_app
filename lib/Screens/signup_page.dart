@@ -36,20 +36,6 @@ class _SignupPageState extends State<SignupPage> {
     }
   }
 
-  Future<void> signupUser() async {
-    if (_signUpFormKey.currentState.validate()) {
-      _authServices.createUserWithEmailAndPassword(
-          _emailController.text, _passwordController.text);
-      Fluttertoast.showToast(msg: "User created Successfully");
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomePage(),
-        ),
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,7 +73,11 @@ class _SignupPageState extends State<SignupPage> {
                     TextFormField(
                       controller: _fullNameController,
                       validator: (value) {
-                        return passwordValidator(value, 3);
+                        if(value.length < 3) {
+                          return 'Please enter a valid name';
+                        } else {
+                          return null;
+                        }
                       },
                       decoration: InputDecoration(
                         labelText: "Full Name",
@@ -162,7 +152,12 @@ class _SignupPageState extends State<SignupPage> {
                       height: 50,
                       child: FlatButton(
                         onPressed: () {
-                          //todosignUpUser();
+                         if(_signUpFormKey.currentState.validate()) {
+                            _authServices.createUserWithEmailAndPassword(context,
+                              _emailController.text, _passwordController.text);
+                         } else { 
+                           Fluttertoast.showToast(msg: 'Please fill details.');
+                         }
                         },
                         padding: EdgeInsets.all(0),
                         shape: RoundedRectangleBorder(
